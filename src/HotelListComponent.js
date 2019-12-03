@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
-let serviceUrl = 'entities.guests/findTop10';
 
-let jsonHeaders = {
+import './App.css';
+
+let serviceUrl = 'entities.guests/findTop10';
+let serviceUrlJsonHeaders = {
 	'Content-Type': 'application/json',
 	'Accept': 'application/json'
 };
 
-class HotelListComponent extends Component
-{
-	constructor(props)
-	{
+class HotelListComponent extends Component {
+	constructor(props) {
 		super(props);
 		this.state =
 			{
@@ -19,16 +18,14 @@ class HotelListComponent extends Component
 				items: []
 			};
 	}
-	componentDidMount()
-	{
+	componentDidMount() {
 
 		fetch(serviceUrl, {
-			headers: jsonHeaders
+			headers: serviceUrlJsonHeaders
 
 		})
 			.then(result => result.json())
-			.then(json =>
-			{
+			.then(json => {
 				this.setState(
 					{
 						hasLoaded: true,
@@ -37,8 +34,7 @@ class HotelListComponent extends Component
 					}
 				)
 			})
-			.catch(json =>
-			{
+			.catch(json => {
 				this.setState(
 					{
 						hasLoaded: false,
@@ -49,18 +45,14 @@ class HotelListComponent extends Component
 			);
 	}
 
-	render()
-	{
+	render() {
 		var { hasLoaded, items, hasError } = this.state;
 
-		if (hasError)
-		{
+		if (hasError) {
 			return <div>Error....</div>;
-		} else if (!hasLoaded)
-		{
+		} else if (!hasLoaded) {
 			return <div>Loading....</div>;
-		} else
-		{
+		} else {
 			return (
 				<div className="App">
 					<h1>Assignment 2 - React</h1>
